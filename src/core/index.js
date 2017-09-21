@@ -1,6 +1,6 @@
-const popperRenderer = require('./render.js');
+const tippyRenderer = require('./render.js');
 
-module.exports.core = function(){
+module.exports.core = function(selector, userOptions){
   let cy = this;
 
   // your extension impl...
@@ -10,7 +10,7 @@ module.exports.core = function(){
 
 
 //Create a tippy object for all elements in a collection
-module.exports.collection = function(){
+module.exports.collection = function(selector, userOptions){
   var elements = this;
   var cy = this.cy();
   var container = cy.container();
@@ -18,6 +18,16 @@ module.exports.collection = function(){
   //Loop over each element in the current collection.
   elements.each(function(element, i){
       //Create options object for current element
+      var options = tippyRenderer.createTippyOptionsObject(userOptions);
+
+      //Store temp data
+      element.scratch('tippy-opts', options);
+      element.scratch('tippy-target', selector);
+
+      //Create a tippy object
+      var tippy = tippyRenderer.createTippyObject(element);
+      element.scratch('tippy', tippy);
+
   });
 
 

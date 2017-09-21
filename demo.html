@@ -13,6 +13,7 @@
 		<!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
 
 		<script src="cytoscape-tippy.js"></script>
+		<script src=""></script>
 
 		<style>
 			body {
@@ -82,6 +83,12 @@
 
 				// demo your core ext
 				//cy.tippy( /* args... */ );
+				cy.nodes()[0].tippy('#cool');
+				cy.on('tap', 'node', function (evt) {
+					var q = evt.target.scratch('tippy-popper')
+					evt.target.scratch('tippy').show(q, 500);
+        			console.log(evt.target.scratch('tippy'));
+   				 });
 
 			});
 		</script>
@@ -89,8 +96,8 @@
 
 	<body>
 		<h1>cytoscape-tippy demo</h1>
-
 		<div id="cy"></div>
+		<button title="hi" id="cool">element</button>
 
 	</body>
 
