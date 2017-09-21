@@ -31,18 +31,24 @@ module.exports.createTippyObject = function (cyElement) {
         var userOptions = cyElement.scratch('tippy-opts');
         var selector = cyElement.scratch('tippy-target');
 
-        console.log(selector);
-        //Create and return actual tippy object
-        var tippy = Tippy(selector);
-        console.log(tippy)
-        var el = document.querySelector(selector);
-        console.log(el);
+        //Get Dimensions 
+        var dim = helper.getTippyObjectDimensions(cyElement, isNode);
+
+        //Create an actual tippy object
+        var tippy = Tippy(selector, {
+            position: 'right',
+            popperOptions: {
+                el  : ""
+            }
+        });
+        var tippyElement = document.querySelector(selector);
+
         //Get popper
-        var popper = tippy.getPopperElement(el)
-        console.log(popper);
+        var popper = tippy.getPopperElement(tippyElement)
+
+        //Store popper object in a scratch pad
         cyElement.scratch('tippy-popper', popper);
-  
-        
+        console.log(popper);
         return tippy;
     }
 
