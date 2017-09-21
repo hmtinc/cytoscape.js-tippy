@@ -4,7 +4,9 @@ const impl = require('./core');
 let register = function( cytoscape ){
   if( !cytoscape ){ return; } // can't register if cytoscape unspecified
 
-  cytoscape( 'core', 'tippy', impl ); // register with cytoscape.js
+  cytoscape( 'core', 'tippy', impl.core ); // register with cytoscape.js
+  cytoscape( 'collection', 'tippy', impl.collection); //Cytoscape Collections
+  
 };
 
 if( typeof cytoscape !== 'undefined' ){ // expose to global cytoscape (i.e. window.cytoscape)
