@@ -93,9 +93,19 @@
 			//Basic HTML tooltip
 			cy.nodes()[1].tippy("#object2", {
 				html: document.querySelector('#htmlTest'),
-				arrow: true,
-				animation: 'fade'
+				arrow: false,
+				animation: 'fade',
+				duration: 3000
 			})
+
+			//Basic Toolip
+			cy.edges()[0].tippy(function (stuff) { return "#object3" },
+				{
+					position: 'top',
+					animation: 'scale',
+					duration: 3000,
+					arrow: false
+				});
 
 		});
 	</script>
@@ -105,6 +115,7 @@
 	<h1>cytoscape-tippy demo</h1>
 	<div id="cy"></div>
 	<div title="hi" id="object"></div>
+	<div title="This is an Edge" id="object3"></div>
 	<div id="object2"></div>
 	<div id="htmlTest" >
 		<h1>Yay For BaderLab</h1>

@@ -13,7 +13,7 @@ module.exports.getPopperBoundingBox = function (cyElement, cy, isNode, dim) {
         position = cyElement.renderedPosition();
     }
     else {
-        position = undefined;
+        position = cyElement.midpoint();
     }
 
     var cyOffset = cy.container().getBoundingClientRect();
