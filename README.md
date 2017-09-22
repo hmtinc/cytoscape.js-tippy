@@ -53,7 +53,34 @@ Plain HTML/JS has the extension registered for you automatically, because no `re
 
 ## API
 
-TODO describe the API of the extension here.
+cytoscape.js-tippy is a very lightweight wrapper which maps calls to tippy upon graph elements (i.e nodes and edges) to
+correct tippy functions while ensuring the parameters match the selected element. 
+
+#### Basic Usage
+
+```js
+  cy.tippy(selector, tippyOptions)
+```
+
+* (Required) selector may be a function or a string. 
+* (Optional) tippyOptions is identical to the options object used in vanilla tippy. Please refer to [Tippy.js](https://atomiks.github.io/tippyjs/) for more info
+
+#### Creating a basic tippy object
+
+```js
+  cy.nodes()[0].tippy("#object");
+```
+
+Since the core of tippy is reliant on DOM elements, you must still provide the id for a unique DOM element when creating a new tooltip for a node.
+The internal modified version of tippy will use this DOM element as a reference to create a popper object whose position will be modified based on the node size/position. 
+
+#### Using a function as a selector
+
+```js 
+  cy.nodes()[0].tippy(function(ele) {return "tippy-obj" + ele.id;});
+```
+
+If you are creating a lot of tippy elements, unlike vanilla tippy, you may opt to provide a function instead of a string. This function must be formatted to take in a graph element and return an unique ID as a string with the correct selector prefix (i.e "." for classes) 
 
 
 ## Build targets
