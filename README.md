@@ -77,7 +77,7 @@ The internal modified version of tippy will use this DOM element as a reference 
 #### Using a function as a selector
 
 ```js 
-  cy.nodes()[0].tippy(function(ele) {return "tippy-obj" + ele.id;});
+  cy.nodes().tippy(function(ele) {return "tippy-obj" + ele.id;});
 ```
 
 If you are creating a lot of tippy elements, unlike vanilla tippy, you may opt to provide a function instead of a string. This function must be formatted to take in a graph element and return an unique ID as a string with the correct selector prefix (i.e "." for classes) 
