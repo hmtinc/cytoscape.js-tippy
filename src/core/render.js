@@ -1,16 +1,11 @@
+import Tippy from './tippy.js';
+
 //Include helper functions and Tippy
 const helper = require('./helper.js');
-import Tippy from './tippy.js';
-                       
+
 //Generate a options object to wrap the given user options
 module.exports.createTippyOptionsObject = function (userOptions) {
     var options = Object.assign({}, userOptions);
-
-    //If id is undefined, created a unique id based on time
-    //if (!(userOptions.id)) {
-       // options.id = 'cy-tippy-target-' + (Date.now() + Math.round(Math.random() + 10000));
-   // }
-
     return options;
 };
 
@@ -48,9 +43,7 @@ module.exports.createTippyObject = function (cyElement) {
         };
 
         //Create an actual tippy object and override the reference object.
-        var tippy = Tippy(selector, {
-            position: 'right',
-        }, refObject);
+        var tippy = Tippy(selector, userOptions , refObject);
 
         //Get the actual html tippy element
         var tippyElement = document.querySelector(selector);
@@ -60,7 +53,7 @@ module.exports.createTippyObject = function (cyElement) {
 
         //Store popper object in a scratch pad
         cyElement.scratch('tippy-popper', popper);
-        console.log(popper);
+        
         return tippy;
     }
 
