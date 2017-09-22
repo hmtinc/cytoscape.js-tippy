@@ -3,7 +3,6 @@ const tippyRenderer = require('./render.js');
 module.exports.core = function (selector, userOptions) {
   //Get cytoscape object and container
   var cy = this;
-  var container = cy.container();
 
   //Create options object for current element
   var options = tippyRenderer.createTippyOptionsObject(userOptions);
@@ -23,9 +22,7 @@ module.exports.core = function (selector, userOptions) {
 //Create a tippy object for all elements in a collection
 module.exports.collection = function (selector, userOptions) {
   var elements = this;
-  var cy = this.cy();
-  var container = cy.container();
-
+  
   //Loop over each element in the current collection.
   elements.each(function (element, i) {
     //Create options object for current element
