@@ -25,6 +25,7 @@ module.exports.createTippyObject = function (cyElement) {
         //Get Values from scatchpad
         var userOptions = cyElement.scratch('tippy-opts');
         var selector = cyElement.scratch('tippy-target');
+        var target = null;
 
         //Get Dimensions 
         var dim = helper.getTippyObjectDimensions(cyElement, isNode);
@@ -42,18 +43,34 @@ module.exports.createTippyObject = function (cyElement) {
             },
         };
 
+        //Get target to bind popper to
+        try {
+            target = helper.getPopperObjectTarget(cyElement, selector);
+        }
+        catch (e) {
+            //Error
+            //Stop creating a popper for tippy
+            return;;
+        }
+
         //Create an actual tippy object and override the reference object.
-        var tippy = Tippy(selector, userOptions , refObject);
+        var tippy = Tippy(target, userOptions, refObject);
 
         //Get the actual html tippy element
-        var tippyElement = document.querySelector(selector);
+        var tippyElement = document.querySelector(target);
 
         //Get popper
         var popper = tippy.getPopperElement(tippyElement)
 
         //Store popper object in a scratch pad
         cyElement.scratch('tippy-popper', popper);
-        
+
+        //Bind tap event to tippy.show(); 
+        cyElement.on('tap', function (evt) {
+            var popperElement = evt.target.scratch('tippy-popper')
+            evt.target.scratch('tippy').show(popperElement);
+        });
+
         return tippy;
     }
 

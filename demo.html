@@ -82,13 +82,7 @@
 				});
 
 				// demo your core ext
-				//cy.tippy( /* args... */ );
-				cy.nodes()[0].tippy('#cool');
-				cy.on('tap', 'node', function (evt) {
-					var q = evt.target.scratch('tippy-popper')
-					evt.target.scratch('tippy').show(q);
-        			console.log(q.getBoundingClientRect());
-   				 });
+				cy.nodes()[0].tippy(function(stuff) {return "#cool"});
 
 			});
 		</script>

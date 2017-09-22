@@ -37,8 +37,8 @@ module.exports.getPopperBoundingBox = function (cyElement, cy, isNode, dim) {
 //Return dimensions
 module.exports.getTippyObjectDimensions = function (cyElement, isNode) {
     //Set Defaults
-    var width = 3;
-    var height = 3;
+    var width = 1;
+    var height = 1;
 
     //Overide with the outer-dimensions if the element is a node
     if (isNode) {
@@ -49,3 +49,35 @@ module.exports.getTippyObjectDimensions = function (cyElement, isNode) {
     //Return a dimension object
     return { w: width, h: height };
 };
+
+
+
+//Return Popper Target (The element to bind popper to)
+module.exports.getPopperObjectTarget = function (cyElement, targetOpt) {
+    var target = null;
+
+    //If target option is invalid, return error
+    if (!(targetOpt)) {
+        throw "Error : NULL Target";
+    }
+    //Execute function if user opted for a dyanamic target
+    else if (typeof targetOpt === 'function') {
+        target = targetOpt(cyElement);
+    }
+    //Treat target option as an ID if  user opted for a static target
+    else if (typeof targetOpt === 'string') {
+        target = targetOpt;
+    }
+    else {
+        throw "Error : No Target";
+    }
+
+    //Check validity of parsed target
+    if (target === null) {
+        throw "Error : No Target";
+    } else {
+        return target;
+    }
+
+};
+
