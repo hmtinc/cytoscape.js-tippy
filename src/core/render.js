@@ -66,10 +66,18 @@ module.exports.createTippyObject = function (cyElement) {
         cyElement.scratch('tippy-popper', popper);
 
         //Bind tap event to tippy.show(); 
+        /*
         cyElement.on('tap', function (evt) {
             var popperElement = evt.target.scratch('tippy-popper')
             evt.target.scratch('tippy').show(popperElement);
+        }); */
+
+        //Bind mouser over event to tippy.show()
+        cyElement.on('mouseover', function (evt) {
+            var popperElement = evt.target.scratch('tippy-popper')
+            evt.target.scratch('tippy').show(popperElement);
         });
+
 
         return tippy;
     }

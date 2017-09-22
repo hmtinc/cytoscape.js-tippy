@@ -2,97 +2,114 @@
 
 <html>
 
-	<head>
-		<title>cytoscape-tippy.js demo</title>
+<head>
+	<title>cytoscape-tippy.js demo</title>
 
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-		<link rel="stylesheet" href="tippy.css">
-		<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="tippy.css">
+	<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 
-		<!-- for testing with local version of cytoscape.js -->
-		<!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
+	<!-- for testing with local version of cytoscape.js -->
+	<!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
 
-		<script src="cytoscape-tippy.js"></script>
-		<script src=""></script>
+	<script src="cytoscape-tippy.js"></script>
+	<script src=""></script>
 
-		<style>
-			body {
-				font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
-				font-size: 14px;
-			}
+	<style>
+		body {
+			font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
+			font-size: 14px;
+		}
 
-			#cy {
-				position: absolute;
-				left: 0;
-				top: 0;
-				bottom: 0;
-				right: 0;
-				z-index: 999;
-			}
+		#cy {
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 999;
+		}
 
-			h1 {
-				opacity: 0.5;
-				font-size: 1em;
-				font-weight: bold;
-			}
-		</style>
+		h1 {
+			opacity: 0.5;
+			font-size: 1em;
+			font-weight: bold;
+		}
+	</style>
 
-		<script>
-			document.addEventListener('DOMContentLoaded', function(){
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
 
-				var cy = window.cy = cytoscape({
-					container: document.getElementById('cy'),
+			var cy = window.cy = cytoscape({
+				container: document.getElementById('cy'),
 
-					style: [
-						{
-							selector: 'node',
-							style: {
-								'content': 'data(name)'
-							}
-						},
-
-						{
-							selector: 'edge',
-							style: {
-								'curve-style': 'bezier',
-								'target-arrow-shape': 'triangle'
-							}
+				style: [
+					{
+						selector: 'node',
+						style: {
+							'content': 'data(name)'
 						}
-					],
+					},
 
-					elements: {
-						nodes: [
-							{ data: { id: 'j', name: 'Jerry' } },
-							{ data: { id: 'e', name: 'Elaine' } },
-							{ data: { id: 'k', name: 'Kramer' } },
-							{ data: { id: 'g', name: 'George' } }
-						],
-						edges: [
-							{ data: { source: 'j', target: 'e' } },
-							{ data: { source: 'j', target: 'k' } },
-							{ data: { source: 'j', target: 'g' } },
-							{ data: { source: 'e', target: 'j' } },
-							{ data: { source: 'e', target: 'k' } },
-							{ data: { source: 'k', target: 'j' } },
-							{ data: { source: 'k', target: 'e' } },
-							{ data: { source: 'k', target: 'g' } },
-							{ data: { source: 'g', target: 'j' } }
-						]
+					{
+						selector: 'edge',
+						style: {
+							'curve-style': 'bezier',
+							'target-arrow-shape': 'triangle'
+						}
 					}
+				],
+
+				elements: {
+					nodes: [
+						{ data: { id: 'j', name: 'Jerry' } },
+						{ data: { id: 'e', name: 'Elaine' } },
+						{ data: { id: 'k', name: 'Kramer' } },
+						{ data: { id: 'g', name: 'George' } }
+					],
+					edges: [
+						{ data: { source: 'j', target: 'e' } },
+						{ data: { source: 'j', target: 'k' } },
+						{ data: { source: 'j', target: 'g' } },
+						{ data: { source: 'e', target: 'j' } },
+						{ data: { source: 'e', target: 'k' } },
+						{ data: { source: 'k', target: 'j' } },
+						{ data: { source: 'k', target: 'e' } },
+						{ data: { source: 'k', target: 'g' } },
+						{ data: { source: 'g', target: 'j' } }
+					]
+				}
+			});
+
+			//Basic Toolip
+			cy.nodes()[0].tippy(function (stuff) { return "#object" },
+				{
+					position: 'right',
+					animation: 'scale',
+					duration: 3000,
+					arrow: true
 				});
 
-				// demo your core ext
-				cy.nodes()[0].tippy(function(stuff) {return "#cool"});
+			//Basic HTML tooltip
+			cy.nodes()[1].tippy("#object2", {
+				html: document.querySelector('#htmlTest'),
+				arrow: true,
+				animation: 'fade'
+			})
 
-			});
-		</script>
-	</head>
+		});
+	</script>
+</head>
 
-	<body>
-		<h1>cytoscape-tippy demo</h1>
-		<div id="cy"></div>
-		<div title="hi" id="cool"></div>
-
-	</body>
+<body>
+	<h1>cytoscape-tippy demo</h1>
+	<div id="cy"></div>
+	<div title="hi" id="object"></div>
+	<div id="object2"></div>
+	<div id="htmlTest" >
+		<h1>Yay For BaderLab</h1>
+		<img alt="baderlab" height="100"  width = "200" src="http://baderlab.org/moin_static192/common/BaderLab_Header_3.png">
+	</div>
+</body>
 
 </html>
