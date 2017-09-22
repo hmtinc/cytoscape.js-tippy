@@ -34,13 +34,25 @@ module.exports.createTippyObject = function (cyElement) {
         //Get Dimensions 
         var dim = helper.getTippyObjectDimensions(cyElement, isNode);
 
-        //Create an actual tippy object
+        //Define popper refernce object
+        var refObject = {
+            getBoundingClientRect: function () {
+                return helper.getPopperBoundingBox(cyElement, cy, isNode, dim);
+            },
+            get clientWidth() {
+                return dim.w;
+            },
+            get clientHeight() {
+                return dim.h;
+            },
+        };
+
+        //Create an actual tippy object and override the reference object.
         var tippy = Tippy(selector, {
             position: 'right',
-            popperOptions: {
-                el  : ""
-            }
-        });
+        }, refObject);
+
+        //Get the actual html tippy element
         var tippyElement = document.querySelector(selector);
 
         //Get popper
