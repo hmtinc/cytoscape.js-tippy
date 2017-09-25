@@ -92,8 +92,20 @@ If you are creating a lot of tippy elements, unlike vanilla tippy, you may opt t
     evt.target.scratch('tippy').show(popperElement);
   });
 ```
+Unlike tippy.js events are not automatically bound to internal tippy actions. If you wish to bind these events in different cases to tippy events, simply just use tippy as you normally would from the scratchpad within the cytoscape binding function.
 
-Cytoscape.js has quite a few internal events and if you wish to bind these events in different cases to tippy events, simply just use tippy as you normally would from the scratchpad within the cytoscape binding function.
+
+### Basic HTML tippy tool tips 
+```js
+			cy.nodes()[1].tippy("#object2", {
+				html: document.querySelector('#htmlTest'),
+				arrow: false,
+				animation: 'fade',
+				duration: 3000
+			})
+```
+HTML tool tips initialization is identical to vanilla tippy.js, Please refer to [Tippy.js](https://atomiks.github.io/tippyjs/) for more info
+
 
 ## Build targets
 

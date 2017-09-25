@@ -6,7 +6,7 @@ let register = function( cytoscape ){
 
   cytoscape( 'core', 'tippy', impl.core ); // register with cytoscape.js
   cytoscape( 'collection', 'tippy', impl.collection); //Cytoscape Collections
-  
+
 };
 
 if( typeof cytoscape !== 'undefined' ){ // expose to global cytoscape (i.e. window.cytoscape)

@@ -81,7 +81,7 @@
 				}
 			});
 
-			//Basic Toolip
+			//Basic Right Toolip
 			cy.nodes()[0].tippy(function (stuff) { return "#object" },
 				{
 					position: 'right',
@@ -98,7 +98,7 @@
 				duration: 3000
 			})
 
-			//Basic Toolip
+			//Basic Top Toolip 
 			cy.edges()[0].tippy(function (stuff) { return "#object3" },
 				{
 					position: 'top',
@@ -108,7 +108,7 @@
 				});
 
 
-			//Basic Toolip
+			//Basic Left Toolip
 			cy.nodes()[2].tippy(function (stuff) { return "#object4" },
 				{
 					position: 'left',
@@ -117,7 +117,7 @@
 					arrow: true
 				});
 
-			//Basic Toolip
+			//Basic Bottom Toolip
 			cy.nodes()[3].tippy(function (stuff) { return "#object5" },
 				{
 					position: 'bottom',
@@ -127,7 +127,7 @@
 				});
 
 
-
+		    //Binding actions (Try/Catch blocks re only for quick demo purposes)
 			//Bind mouse over event to tippy.show()
 			cy.elements().on('mouseover', function (evt) {
 				try {
@@ -158,8 +158,6 @@
 				}
 				catch (e) {}
 			});
-
-
 
 		});
 	</script>
