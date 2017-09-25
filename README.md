@@ -97,12 +97,12 @@ Unlike tippy.js events are not automatically bound to internal tippy actions. If
 
 ### Basic HTML tippy tool tips 
 ```js
-			cy.nodes()[1].tippy("#object2", {
-				html: document.querySelector('#htmlTest'),
-				arrow: false,
-				animation: 'fade',
-				duration: 3000
-			})
+   cy.nodes()[1].tippy("#object2", {
+	html: document.querySelector('#htmlTest'),
+	arrow: false,
+	animation: 'fade',
+	duration: 3000
+  })
 ```
 HTML tool tips initialization is identical to vanilla tippy.js, Please refer to [Tippy.js](https://atomiks.github.io/tippyjs/) for more info
 
