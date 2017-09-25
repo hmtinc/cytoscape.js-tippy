@@ -83,6 +83,18 @@ The internal modified version of tippy will use this DOM element as a reference 
 If you are creating a lot of tippy elements, unlike vanilla tippy, you may opt to provide a function instead of a string. This function must be formatted to take in a graph element and return an unique ID as a string with the correct selector prefix (i.e "." for classes) 
 
 
+### Binding Events to tippy.js metods 
+
+```js
+  //Bind mouse over event to tippy.show()
+  cyElement.on('mouseover', function (evt) {
+    var popperElement = evt.target.scratch('tippy-popper')
+    evt.target.scratch('tippy').show(popperElement);
+  });
+```
+
+Cytoscape.js has quite a few internal events and if you wish to bind these events in different cases to tippy events, simply just use tippy as you normally would from the scratchpad within the cytoscape binding function. 
+
 ## Build targets
 
 * `npm run test` : Run Mocha tests in `./test`

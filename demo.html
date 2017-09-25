@@ -107,6 +107,26 @@
 					arrow: false
 				});
 
+
+			//Basic Toolip
+			cy.nodes()[2].tippy(function (stuff) { return "#object4" },
+				{
+					position: 'left',
+					animation: 'scale',
+					duration: 3000,
+					arrow: true
+				});
+
+			//Basic Toolip
+			cy.nodes()[3].tippy(function (stuff) { return "#object5" },
+				{
+					position: 'bottom',
+					animation: 'scale',
+					duration: 3000,
+					arrow: true
+				});
+
+
 		});
 	</script>
 </head>
@@ -115,11 +135,13 @@
 	<h1>cytoscape-tippy demo</h1>
 	<div id="cy"></div>
 	<div title="hi" id="object"></div>
+	<div title="Kramer, who? " id="object4"></div>
+	<div title="George is the name!" id="object5"></div>
 	<div title="This is an Edge" id="object3"></div>
 	<div id="object2"></div>
-	<div id="htmlTest" >
+	<div id="htmlTest">
 		<h1>Yay For BaderLab</h1>
-		<img alt="baderlab" height="100"  width = "200" src="http://baderlab.org/moin_static192/common/BaderLab_Header_3.png">
+		<img alt="baderlab" height="100" width="200" src="http://baderlab.org/moin_static192/common/BaderLab_Header_3.png">
 	</div>
 </body>
 

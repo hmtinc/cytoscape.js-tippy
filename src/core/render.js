@@ -27,7 +27,7 @@ module.exports.createTippyObject = function (cyElement) {
         var selector = cyElement.scratch('tippy-target');
         var target = null;
 
-        //Get Dimensions 
+        //Get Dimensions
         var dim = helper.getTippyObjectDimensions(cyElement, isNode);
 
         //Define popper refernce object
@@ -62,20 +62,37 @@ module.exports.createTippyObject = function (cyElement) {
         //Get popper
         var popper = tippy.getPopperElement(tippyElement)
 
+
         //Store popper object in a scratch pad
         cyElement.scratch('tippy-popper', popper);
 
-        //Bind tap event to tippy.show(); 
+        //Bind tap event to tippy.show();
         /*
         cyElement.on('tap', function (evt) {
             var popperElement = evt.target.scratch('tippy-popper')
             evt.target.scratch('tippy').show(popperElement);
         }); */
 
-        //Bind mouser over event to tippy.show()
+        //Bind mouse over event to tippy.show()
         cyElement.on('mouseover', function (evt) {
             var popperElement = evt.target.scratch('tippy-popper')
             evt.target.scratch('tippy').show(popperElement);
+        });
+
+        //Bind mouse out  event to tippy.hide()
+        cyElement.on('mouseout', function (evt) {
+            var popperElement = evt.target.scratch('tippy-popper')
+            evt.target.scratch('tippy').hide(popperElement);
+        });
+
+        //Bind drag event to popper update
+        cyElement.on('drag', function (evt) {
+            //Get Popper Element and html status
+            var popperElement = evt.target.scratch('tippy-popper');
+            var html = evt.target.scratch('tippy').settings.html;
+
+            //Only update content is not a html tooltip
+            if (!(html)) evt.target.scratch('tippy').update(popperElement);
         });
 
 

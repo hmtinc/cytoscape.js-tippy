@@ -1,5 +1,5 @@
 //Update tippy object
-module.exports.updateTippyObjectPosition = function(cyElement){
+module.exports.updateTippyObjectPosition = function (cyElement) {
     var tippy = cyElement.scratch('tippy');
     tippy.update();
     return tippy;
@@ -15,6 +15,12 @@ module.exports.getPopperBoundingBox = function (cyElement, cy, isNode, dim) {
     else {
         position = cyElement.midpoint();
     }
+
+    //Use midpoint of the element as the desired position
+    var widthAvg = cyElement.outerWidth() / 2;
+    var heightAvg = cyElement.outerHeight() / 2;
+    position.x -= widthAvg;
+    position.y -= heightAvg;
 
     var cyOffset = cy.container().getBoundingClientRect();
 
