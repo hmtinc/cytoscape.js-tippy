@@ -66,36 +66,6 @@ module.exports.createTippyObject = function (cyElement) {
         //Store popper object in a scratch pad
         cyElement.scratch('tippy-popper', popper);
 
-        //Bind tap event to tippy.show();
-        /*
-        cyElement.on('tap', function (evt) {
-            var popperElement = evt.target.scratch('tippy-popper')
-            evt.target.scratch('tippy').show(popperElement);
-        }); */
-
-        //Bind mouse over event to tippy.show()
-        cyElement.on('mouseover', function (evt) {
-            var popperElement = evt.target.scratch('tippy-popper')
-            evt.target.scratch('tippy').show(popperElement);
-        });
-
-        //Bind mouse out  event to tippy.hide()
-        cyElement.on('mouseout', function (evt) {
-            var popperElement = evt.target.scratch('tippy-popper')
-            evt.target.scratch('tippy').hide(popperElement);
-        });
-
-        //Bind drag event to popper update
-        cyElement.on('drag', function (evt) {
-            //Get Popper Element and html status
-            var popperElement = evt.target.scratch('tippy-popper');
-            var html = evt.target.scratch('tippy').settings.html;
-
-            //Only update content is not a html tooltip
-            if (!(html)) evt.target.scratch('tippy').update(popperElement);
-        });
-
-
         return tippy;
     }
 

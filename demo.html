@@ -127,6 +127,40 @@
 				});
 
 
+
+			//Bind mouse over event to tippy.show()
+			cy.elements().on('mouseover', function (evt) {
+				try {
+				var popperElement = evt.target.scratch('tippy-popper')
+				evt.target.scratch('tippy').show(popperElement);
+				}
+				catch (e) {}
+			});
+
+			//Bind mouse out  event to tippy.hide()
+			cy.elements().on('mouseout', function (evt) {
+				try{
+				var popperElement = evt.target.scratch('tippy-popper')
+				evt.target.scratch('tippy').hide(popperElement);
+				}
+				catch (e) {}
+			});
+
+			//Bind drag event to popper update
+			cy.elements().on('drag', function (evt) {
+				try{
+				//Get Popper Element and html status
+				var popperElement = evt.target.scratch('tippy-popper');
+				var html = evt.target.scratch('tippy').settings.html;
+
+				//Only update content is not a html tooltip
+				if (!(html)) evt.target.scratch('tippy').update(popperElement);
+				}
+				catch (e) {}
+			});
+
+
+
 		});
 	</script>
 </head>
