@@ -55,28 +55,23 @@
 						selector: 'edge',
 						style: {
 							'curve-style': 'bezier',
-							'target-arrow-shape': 'triangle'
-						}
+							'target-arrow-shape': 'triangle',
+							'label': 'data(label)',
+							'font-size': '15pt'
+						},
 					}
 				],
 
 				elements: {
 					nodes: [
-						{ data: { id: 'j', name: 'Jerry' } },
-						{ data: { id: 'e', name: 'Elaine' } },
-						{ data: { id: 'k', name: 'Kramer' } },
-						{ data: { id: 'g', name: 'George' } }
+						{ data: { id: 'right', name: 'Right Tip' } },
+						{ data: { id: 'html', name: 'HTML View' } },
+						{ data: { id: 'left', name: 'Top Tip' } },
+						{ data: { id: 't', name: 'Left Tip' } },
 					],
 					edges: [
-						{ data: { source: 'j', target: 'e' } },
-						{ data: { source: 'j', target: 'k' } },
-						{ data: { source: 'j', target: 'g' } },
-						{ data: { source: 'e', target: 'j' } },
-						{ data: { source: 'e', target: 'k' } },
-						{ data: { source: 'k', target: 'j' } },
-						{ data: { source: 'k', target: 'e' } },
-						{ data: { source: 'k', target: 'g' } },
-						{ data: { source: 'g', target: 'j' } }
+					{ data: { source: 'right', target: 'html', label:"Hover over this edge" } }
+
 					]
 				}
 			});
@@ -95,6 +90,7 @@
 				html: document.querySelector('#htmlTest'),
 				arrow: false,
 				animation: 'fade',
+				position: 'bottom',
 				duration: 3000
 			})
 
@@ -111,7 +107,7 @@
 			//Basic Left Toolip
 			cy.nodes()[2].tippy(function (stuff) { return "#object4" },
 				{
-					position: 'left',
+					position: 'top',
 					animation: 'scale',
 					duration: 3000,
 					arrow: true
@@ -120,7 +116,7 @@
 			//Basic Bottom Toolip
 			cy.nodes()[3].tippy(function (stuff) { return "#object5" },
 				{
-					position: 'bottom',
+					position: 'left',
 					animation: 'scale',
 					duration: 3000,
 					arrow: true
@@ -166,10 +162,10 @@
 <body>
 	<h1>cytoscape-tippy demo</h1>
 	<div id="cy"></div>
-	<div title="hi" id="object"></div>
-	<div title="Kramer, who? " id="object4"></div>
-	<div title="George is the name!" id="object5"></div>
-	<div title="This is an Edge" id="object3"></div>
+	<div title="This is a Right Tip!" id="object"></div>
+	<div title="This a Top Tip, Drag this node around!" id="object4"></div>
+	<div title="This is a Left Tip" id="object5"></div>
+	<div title="This is an Edge Tooltip" id="object3"></div>
 	<div id="object2"></div>
 	<div id="htmlTest">
 		<h1>Yay For BaderLab</h1>
